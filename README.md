@@ -13,3 +13,7 @@ The **Data Getter - No Nav Edition** is a Lightning Web Component (LWC) designed
 ## This is a sample implementation with Location object, modify the XML for your requirement.
 
 ## Attachements:
+![Screenshot (42)](https://github.com/user-attachments/assets/711e1969-d3b8-4388-8e41-4447226cbe17)
+![Screenshot (38)](https://github.com/user-attachments/assets/a151f642-1179-42da-8779-75c763d4c7f8)
+![Screenshot (39)](https://github.com/user-attachments/assets/afb6e99e-7244-4131-a15c-2d445a42e339)
+![Screenshot (40)](https://github.com/user-attachments/assets/cca5d2b1-db1b-4460-99c5-8ec5d33ca32b)
