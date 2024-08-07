@@ -63,11 +63,6 @@
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
-            <name>disp</name>
-            <fieldText>&lt;p&gt;{!fxSOQL}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
             <name>renderDT</name>
             <dataTypeMappings>
                 <typeName>T</typeName>
