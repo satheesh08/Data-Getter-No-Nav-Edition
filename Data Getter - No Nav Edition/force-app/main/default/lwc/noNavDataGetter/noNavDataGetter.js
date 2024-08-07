@@ -7,7 +7,7 @@ export default class NoNavDataGetter extends LightningElement {
     @track oldSoqlQuery;
     @api collection = [];
     debounceTimeout = null;
-    debounceDelay = 300;
+    debounceDelay = 100;
 
     renderedCallback() {
         if (this.soqlQuery !== this.oldSoqlQuery) {
