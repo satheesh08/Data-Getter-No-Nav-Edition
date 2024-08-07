@@ -18,3 +18,7 @@ The **Data Getter - No Nav Edition** is a Lightning Web Component (LWC) designed
 ![Screenshot (42)](https://github.com/user-attachments/assets/711e1969-d3b8-4388-8e41-4447226cbe17)
 ![Screenshot (39)](https://github.com/user-attachments/assets/afb6e99e-7244-4131-a15c-2d445a42e339)
 ![Screenshot (40)](https://github.com/user-attachments/assets/cca5d2b1-db1b-4460-99c5-8ec5d33ca32b)
+
+## Notes:
+- If something breaks, it might be because of the invalid API key.
+- Try Creating a new key and use it in the code.
