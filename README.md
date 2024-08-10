@@ -10,8 +10,8 @@ The **Data Getter - No Nav Edition** is a Lightning Web Component (LWC) designed
 - **Integration**: We use integration to convert the general text to SOQL.
 - **Real-Time Data Display**: Shows query results dynamically on the same screen.
 
-## Prerequisites
-# Adding Remote Site Settings for OpenAI API in Salesforce
+# Prerequisites
+## Adding Remote Site Settings for OpenAI API in Salesforce
 
 To configure Salesforce to communicate with the OpenAI API, follow these steps to add a remote site setting.
 
