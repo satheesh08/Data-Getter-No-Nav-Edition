@@ -4,7 +4,7 @@ public class NoNavDataGetterUtil {
     public static String generateSOQL(String naturalLanguageQuery) {
         System.debug(naturalLanguageQuery);
         String endpoint = 'https://api.openai.com/v1/chat/completions';
-        String GPT_API_KEY ='YOUR KEY'; 
+        String GPT_API_KEY =''; 
         
         String requestBody = System.JSON.serialize(new Map<String, Object>{
             'model' => 'gpt-4o-mini',
@@ -30,12 +30,12 @@ public class NoNavDataGetterUtil {
         Http http = new Http();
         HttpResponse res = http.send(req);
         String SOQLQuery='';
+        System.debug(res.getBody());
         if (res.getStatusCode() == 200) {
             Map<String, Object> parsedResponse = (Map<String, Object>)System.JSON.deserializeUntyped(res.getBody());
             List<Object> choicesList = (List<Object>) parsedResponse.get('choices'); 
-            Map<String, Object> choice = (Map<String, Object>) choicesList.get(0);
-            Map<String, Object> messageForGPT = (Map<String, Object>) choice.get('message');
-            SOQLQuery = (String) messageForGPT.get('content');
+            SOQLQuery = (String) ((Map<String, Object>) ((Map<String, Object>) choicesList.get(0)).get('message')).get('content');
+            System.debug(SOQLQuery);
             return SOQLQuery;
         } else {
             return 'Error: ' + res.getBody();
