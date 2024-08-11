@@ -1,0 +1,25 @@
+.slds-spinner_container {
+    position: fixed; /* Use fixed positioning to avoid issues with parent sizing */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
+}
+
+.slds-spinner {
+    border-radius: 50%;
+    border: 4px solid #d8dde6;
+    border-top: 4px solid #0070d2;
+    width: 2rem;
+    height: 2rem;
+    animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+    to { transform: rotate(360deg); }
+}
