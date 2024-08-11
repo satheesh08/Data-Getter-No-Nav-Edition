@@ -1,3 +1,6 @@
 <template>
-  <div onchange={throttleInit} class="slds-hidden">{soqlQuery}</div>
+  <div if:true={isLoading} class="slds-spinner_container">
+      <div class="slds-spinner"></div>
+  </div>
+  <div class="slds-hidden">{soqlQuery}</div>
 </template>
