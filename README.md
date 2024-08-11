@@ -8,6 +8,7 @@ The **Data Getter - No Nav Edition** is a Lightning Web Component (LWC) designed
 
 - **SOQL Query Input**: Allows users to input a general text query directly.
 - **Integration**: We use integration to convert the general text to SOQL.
+- **Cache Included**: Cache mechanism for optimisation .
 - **Real-Time Data Display**: Shows query results dynamically on the same screen.
 
 # Prerequisites
