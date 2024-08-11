@@ -7,9 +7,10 @@ export default class NoNavDataGetter extends LightningElement {
     @track oldSoqlQuery;
     @api collection = [];
     debounceTimeout = null;
-    debounceDelay = 50; 
-    @track isLoading = false; 
-    queryCache = new Map(); 
+    debounceDelay = 50;
+    @track isLoading = false;
+    queryCache = new Map();
+    cacheTTL = 5 * 60 * 1000; 
 
     renderedCallback() {
         if (this.soqlQuery !== this.oldSoqlQuery) {
@@ -28,22 +29,35 @@ export default class NoNavDataGetter extends LightningElement {
     }
 
     async queueRequest() {
-        if (this.queryCache.has(this.soqlQuery)) {
-            this.collection = this.queryCache.get(this.soqlQuery);
-            this.dispatchEvent(new FlowAttributeChangeEvent("collection", this.collection));
-        } else {
-            this.isLoading = true; 
-            try {
-                const result = await getObjectDataForSOQL({ naturalLanguageQuery: this.soqlQuery });
-                this.collection = result;
-                this.queryCache.set(this.soqlQuery, result);
+        const currentTime = Date.now();
+        const cacheKey = this.createCacheKey(this.soqlQuery);
+
+        if (this.queryCache.has(cacheKey)) {
+            const cacheEntry = this.queryCache.get(cacheKey);
+            if (currentTime - cacheEntry.timestamp < this.cacheTTL) {
+                this.collection = cacheEntry.data;
                 this.dispatchEvent(new FlowAttributeChangeEvent("collection", this.collection));
-            } catch (error) {
-                console.error('Request failed:', error);
-            } finally {
-                this.isLoading = false;
+                return;
+            } else {
+                this.queryCache.delete(cacheKey);
             }
         }
+
+        this.isLoading = true;
+        try {
+            const result = await getObjectDataForSOQL({ naturalLanguageQuery: this.soqlQuery });
+            this.collection = result;
+            this.queryCache.set(cacheKey, { data: result, timestamp: currentTime });
+            this.dispatchEvent(new FlowAttributeChangeEvent("collection", this.collection));
+        } catch (error) {
+            console.error('Request failed:', error);
+        } finally {
+            this.isLoading = false;
+        }
         this.oldSoqlQuery = this.soqlQuery;
+    }
+
+    createCacheKey(query) {
+        return `soql_${encodeURIComponent(query)}`;
     }
 }
