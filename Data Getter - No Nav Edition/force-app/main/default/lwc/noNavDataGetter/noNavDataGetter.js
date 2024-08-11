@@ -7,7 +7,9 @@ export default class NoNavDataGetter extends LightningElement {
     @track oldSoqlQuery;
     @api collection = [];
     debounceTimeout = null;
-    debounceDelay = 100;
+    debounceDelay = 50; 
+    @track isLoading = false; 
+    queryCache = new Map(); 
 
     renderedCallback() {
         if (this.soqlQuery !== this.oldSoqlQuery) {
@@ -26,13 +28,22 @@ export default class NoNavDataGetter extends LightningElement {
     }
 
     async queueRequest() {
-        try {
-            const result = await getObjectDataForSOQL({ naturalLanguageQuery: this.soqlQuery });
-            this.collection = result;
+        if (this.queryCache.has(this.soqlQuery)) {
+            this.collection = this.queryCache.get(this.soqlQuery);
             this.dispatchEvent(new FlowAttributeChangeEvent("collection", this.collection));
-            this.oldSoqlQuery = this.soqlQuery;
-        } catch (error) {
-            console.error('Request failed:', error);
+        } else {
+            this.isLoading = true; 
+            try {
+                const result = await getObjectDataForSOQL({ naturalLanguageQuery: this.soqlQuery });
+                this.collection = result;
+                this.queryCache.set(this.soqlQuery, result);
+                this.dispatchEvent(new FlowAttributeChangeEvent("collection", this.collection));
+            } catch (error) {
+                console.error('Request failed:', error);
+            } finally {
+                this.isLoading = false;
+            }
         }
+        this.oldSoqlQuery = this.soqlQuery;
     }
 }
