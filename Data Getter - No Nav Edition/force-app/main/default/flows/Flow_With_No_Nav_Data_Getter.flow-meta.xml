@@ -2,11 +2,6 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>61.0</apiVersion>
     <environments>Default</environments>
-    <formulas>
-        <name>fxSOQL</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Type_Location_Name})),&quot;Generate a Salesforce SOQL query to find records in the Location object where the Name field contains the string&apos;&quot; +{!Type_Location_Name} + &quot;&apos;. The query should retrieve the Id, Name, and OwnerId fields for these records.&quot;,&quot;&quot;)</expression>
-    </formulas>
     <interviewLabel>Flow With No Nav - Data Getter {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Flow With No Nav - Data Getter</label>
     <processMetadataValues>
@@ -55,7 +50,7 @@
             <inputParameters>
                 <name>soqlQuery</name>
                 <value>
-                    <elementReference>fxSOQL</elementReference>
+                    <elementReference>SOQLText</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -115,4 +110,9 @@
         </connector>
     </start>
     <status>Draft</status>
+    <textTemplates>
+        <name>SOQLText</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Generate a Salesforce SOQL query to find records in the Location object where the Name field contains the string {!Type_Location_Name}&amp;nbsp;. The query should retrieve the Id, Name, and OwnerId fields for these records.&lt;/p&gt;</text>
+    </textTemplates>
 </Flow>
