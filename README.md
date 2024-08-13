@@ -5,7 +5,7 @@
 The **Data Getter - No Nav Edition** is a Lightning Web Component (LWC) designed for use in Salesforce Screen Flows. It enables users to execute SOQL queries and display the resulting records on the same screen. This avoids the need for additional navigation, streamlining the user experience.
 
 ## Overall Design
-![Screenshot (43)](https://github.com/user-attachments/assets/eaa59e9d-e3a4-402a-b8c2-1411d45302bc)
+![Screenshot (47)](https://github.com/user-attachments/assets/4812a67a-a6b7-454b-a9ec-dd881703c43b)
 
 ## Features
 
@@ -96,8 +96,8 @@ By following these steps, you'll be able to obtain and securely use your OpenAI 
 ## Attachements:
 
 ![Screenshot (38)](https://github.com/user-attachments/assets/a151f642-1179-42da-8779-75c763d4c7f8)
-![Screenshot (42)](https://github.com/user-attachments/assets/711e1969-d3b8-4388-8e41-4447226cbe17)
-![Screenshot (39)](https://github.com/user-attachments/assets/afb6e99e-7244-4131-a15c-2d445a42e339)
+![Screenshot (45)](https://github.com/user-attachments/assets/eb27f4fc-2cf3-456d-ac83-553067f8158b)
+![Screenshot (46)](https://github.com/user-attachments/assets/c19a9ef2-5961-45e7-884d-2a90bb8b1496)
 ![Screenshot (40)](https://github.com/user-attachments/assets/cca5d2b1-db1b-4460-99c5-8ec5d33ca32b)
 
 
