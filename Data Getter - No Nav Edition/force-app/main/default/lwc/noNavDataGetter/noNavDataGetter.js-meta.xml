@@ -11,6 +11,7 @@
             <propertyType name="T" extends="SObject"  label="Object API Name"/>
             <property name="collection" type="{T[]}" role="outputOnly" />
             <property name="soqlQuery" label="SOQL String" type="String" />
+            <property name="devMode" label="Developer Mode" type="Boolean" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
