@@ -92,8 +92,6 @@ To use the OpenAI API, you'll need to obtain an API key. Follow these steps to g
 
 By following these steps, you'll be able to obtain and securely use your OpenAI API key for accessing the OpenAI services.
 
-## This is a sample implementation with Location object, select different object from the LWCs XML and use the appropriate object in the `fxSOQL` formula field.
-
 ## Attachements:
 
 ![Screenshot (38)](https://github.com/user-attachments/assets/a151f642-1179-42da-8779-75c763d4c7f8)
@@ -101,7 +99,9 @@ By following these steps, you'll be able to obtain and securely use your OpenAI 
 -- Here I used Text Template, you can use formula fields/text variables as well.
 
 ![Screenshot (45)](https://github.com/user-attachments/assets/eb27f4fc-2cf3-456d-ac83-553067f8158b)
+
 ![Screenshot (46)](https://github.com/user-attachments/assets/c19a9ef2-5961-45e7-884d-2a90bb8b1496)
+
 ![Screenshot (40)](https://github.com/user-attachments/assets/cca5d2b1-db1b-4460-99c5-8ec5d33ca32b)
 
 
