@@ -13,6 +13,7 @@ The **Data Getter - No Nav Edition** is a Lightning Web Component (LWC) designed
 - **Integration**: We use integration to convert the general text to SOQL.
 - **Cache Included**: Cache mechanism for improving perfomance .
 - **Real-Time Data Display**: Shows query results dynamically on the same screen.
+- **Debug Mode**: Enable this mode to receive new prompt messages when errors occur, and to access additional console logs for troubleshooting.
 
 # Prerequisites
 ## Adding Remote Site Settings for OpenAI API in Salesforce
