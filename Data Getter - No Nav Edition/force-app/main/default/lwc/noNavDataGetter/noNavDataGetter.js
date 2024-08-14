@@ -11,6 +11,7 @@ export default class NoNavDataGetter extends LightningElement {
     @track isLoading = false;
     queryCache = new Map();
     cacheTTL = 5 * 60 * 1000; 
+    @api devMode;
 
     renderedCallback() {
         if (this.soqlQuery !== this.oldSoqlQuery) {
@@ -36,6 +37,11 @@ export default class NoNavDataGetter extends LightningElement {
             const cacheEntry = this.queryCache.get(cacheKey);
             if (currentTime - cacheEntry.timestamp < this.cacheTTL) {
                 this.collection = cacheEntry.data;
+                if(this.devMode){
+                    console.warn('Developer Mode - ON')
+                    console.log('Fetching it from the cache for key:'+' '+cacheKey)
+                    console.dir(this.collection)
+                }
                 this.dispatchEvent(new FlowAttributeChangeEvent("collection", this.collection));
                 return;
             } else {
@@ -46,12 +52,33 @@ export default class NoNavDataGetter extends LightningElement {
         this.isLoading = true;
         try {
             const result = await getObjectDataForSOQL({ naturalLanguageQuery: this.soqlQuery });
-            this.collection = result;
-            this.queryCache.set(cacheKey, { data: result, timestamp: currentTime });
+            this.collection = result.data;
+            if(this.devMode){
+                console.warn('Developer Mode - ON')
+                console.log('Fetching it from OpenAI & Apex'+' '+'New cache block created'+' '+cacheKey)
+                console.dir(this.collection)
+                console.log('SOQL Query from OpenAI');
+                console.log(result.soqlQuery)
+            }
+            this.queryCache.set(cacheKey, { data: result.data, timestamp: currentTime });
             this.dispatchEvent(new FlowAttributeChangeEvent("collection", this.collection));
         } catch (error) {
-            console.error('Request failed:', error);
-        } finally {
+            if(this.devMode){
+            let errorMessage = 'An unknown error occurred';
+            if (error.body && error.body.message) {
+                errorMessage = error.body.message;
+            } else if (error.message) {
+                errorMessage = error.message;
+            }
+            if (errorMessage.startsWith('An error occurred while executing the query:') && this.devMode) {
+                const newPrompt = errorMessage.replace('An error occurred while executing the query: ', '');
+                console.warn('Developer Mode - ON')
+                console.log('Your prompt failed');
+                console.log('Here is our new prompt suggestion'+ newPrompt);
+            }
+        } 
+    }
+    finally {
             this.isLoading = false;
         }
         this.oldSoqlQuery = this.soqlQuery;
